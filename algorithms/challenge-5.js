@@ -61,6 +61,28 @@ const MORSE_CODE = {
 
 Object.freeze(MORSE_CODE)
 
-function morse(text) {}
+function morse(text) {
+  let newtext = text.trim(); 
+  
+  const morse = [];
+
+  newtext = text.split('   ');
+
+  for(let i = 0; i < newtext.length; i++){
+    let char = newtext[i].split(' ');
+    morse.push(char);
+  }
+  let chars = [];
+  for(let i = 0; i < morse.length; i++){
+    for(let j = 0; j < morse.length; j++){
+      chars.push(MORSE_CODE[morse[i][j]]);
+      if(j == morse[i].length - 1){
+        chars.push(' ');
+      }
+    }
+  }
+  return chars.toString('').trim().replace(/,/g,' ');
+}
+console.log(morse('-.. . -.-. .- -.. . ...-'));
 
 module.exports = morse
